@@ -33,8 +33,7 @@ export const crearTarjeta = async (req,res) => {
         res.send(fila)
     } catch (error) {
         console.log(error);
-        return res.status(500).json({message:"Error al leer en la base de datos",
-                                    err:error})
+        return res.status(500).json({message:"Error al leer en la base de datos"})
     }
 };
 
@@ -63,6 +62,7 @@ export const modificarTarjeta = async (req,res) => {
         if (result.affectedRows <= 0) return res.status(404).json({"message":"Tarjeta no encontrada"});
         res.status(204);
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message:"Error al leer en la base de datos"})        
     }
 }
