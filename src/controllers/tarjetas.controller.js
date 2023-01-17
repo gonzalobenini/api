@@ -30,6 +30,7 @@ export const crearTarjeta = async (req,res) => {
         const [fila] = await pool.query('INSERT INTO tarjeta (dni,nombreCompleto,anioNacimiento) VALUES(?, ?, ?)',[dni, nombreCompleto, anioNacimiento])
         res.send(fila)
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message:"Error al leer en la base de datos"})
     }
 };
