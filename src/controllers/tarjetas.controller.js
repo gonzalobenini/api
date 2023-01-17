@@ -8,6 +8,7 @@ export const getTarjetas = async (req,res) => {
         
         console.log(req.get('host'),req.get('origin'));
     } catch(error) {
+        console.log(error);
         return res.status(500).json({message:"Error al leer en la base de datos"})
     }
 };
@@ -20,6 +21,7 @@ export const getTarjeta = async (req,res) => {
         if (filas.length <= 0) {return res.status(404).json({message:"Tarjeta no encontrada"})}
         res.json(filas[0])
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message:"Error al leer en la base de datos"})
     }
 }
@@ -31,7 +33,8 @@ export const crearTarjeta = async (req,res) => {
         res.send(fila)
     } catch (error) {
         console.log(error);
-        return res.status(500).json({message:"Error al leer en la base de datos"})
+        return res.status(500).json({message:"Error al leer en la base de datos",
+                                    err:error})
     }
 };
 
@@ -43,6 +46,7 @@ export const borrarTarjeta = async (req,res) => {
         if (result.affectedRows <= 0) { res.status(404).json({"message":"Tarjeta no existente"})}
         res.status(204); // este codigo significa todo fue bien pero que no se le responde nada al cliente.
     } catch (error) {
+        console.log(error);
         return res.status(500).json({message:"Error al leer en la base de datos"})        
     }
 }
