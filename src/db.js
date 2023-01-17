@@ -6,7 +6,7 @@ console.log(DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_DATABASE);
 export const pool = createPool({
     host: DB_HOST,
     user: DB_USER,
-    password: DB_PASSWROD,
+    password: DB_PASSWORD,
     port: DB_PORT,
     database: DB_DATABASE
 })
