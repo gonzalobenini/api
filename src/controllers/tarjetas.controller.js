@@ -39,7 +39,7 @@ export const crearTarjeta = async (req,res) => {
 
 export const borrarTarjeta = async (req,res) => {
     try {
-        const {result} = await pool.query('DELETE FROM tarjeta WHERE dni = ?',[req.params.id]);
+        const [result] = await pool.query('DELETE FROM tarjeta WHERE dni = ?',[req.params.id]);
         console.log(result);
     
         if (result.affectedRows <= 0) { res.status(404).json({"message":"Tarjeta no existente"})}
