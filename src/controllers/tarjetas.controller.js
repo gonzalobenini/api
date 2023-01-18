@@ -43,7 +43,8 @@ export const borrarTarjeta = async (req,res) => {
         console.log(result);
     
         if (result.affectedRows <= 0) { res.status(404).json({"message":"Tarjeta no existente"})}
-        res.status(204); // este codigo significa todo fue bien pero que no se le responde nada al cliente.
+        //res.status(204); // este codigo significa todo fue bien pero que no se le responde nada al cliente.
+        res.send(result)
     } catch (error) {
         console.log(error);
         return res.status(500).json({message:"Error al leer en la base de datos"})        
