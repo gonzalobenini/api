@@ -61,7 +61,7 @@ export const modificarTarjeta = async (req,res) => {
         // El IFNULL nos permite preguntarnos si el dato existe, en caso que lo haga se devuelve ese mismo dato, sino se devuelve el valor secundario.
     
         if (result.affectedRows <= 0) return res.status(404).json({"message":"Tarjeta no encontrada"});
-        res.status(204);
+        res.send(result);
     } catch (error) {
         console.log(error);
         return res.status(500).json({message:"Error al leer en la base de datos"})        
