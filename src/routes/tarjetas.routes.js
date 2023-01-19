@@ -10,6 +10,8 @@ router.get('/:id',getTarjeta);
 router.post('/', crearTarjeta);
 
 router.patch('/:id', modificarTarjeta);
+
+router.put('/:id', modificarTarjeta);
 // Put es para cambiar todos los datos estrictamente.
 // Patch es para cambiar algunos.
 
