@@ -29,7 +29,8 @@ export const getTarjeta = async (req,res) => {
 export const crearTarjeta = async (req,res) => {
     try {
         const { dni, nombreCompleto, anioNacimiento } = req.body;
-        const [fila] = await pool.query('INSERT INTO tarjeta (dni,nombreCompleto,anioNacimiento) VALUES(?, ?, ?)',[dni, nombreCompleto, anioNacimiento])
+        const [fila] = await pool.query('INSERT INTO tarjeta (dni,nombreCompleto,anioNacimiento) VALUES(?, ?, ?)',[dni, nombreCompleto, anioNacimiento]);
+        console.log(fila);
         res.send(fila)
     } catch (error) {
         console.log(error);
@@ -59,6 +60,7 @@ export const modificarTarjeta = async (req,res) => {
         const [result] = await pool.query('UPDATE tarjeta SET nombreCompleto = IFNULL(?,nombreCompleto), anioNacimiento = IFNULL(?,anioNacimiento) WHERE dni = ?',[nombreCompleto, anioNacimiento, dni]);
         console.log(result);
         // El IFNULL nos permite preguntarnos si el dato existe, en caso que lo haga se devuelve ese mismo dato, sino se devuelve el valor secundario.
+        console.log(dni,nombreCompleto,anioNacimiento);
     
         if (result.affectedRows <= 0) return res.status(404).json({"message":"Tarjeta no encontrada"});
         res.send(result);
