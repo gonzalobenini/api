@@ -58,6 +58,7 @@ export const modificarTarjeta = async (req,res) => {
         const dni = req.params.id;
         const {nombreCompleto,anioNacimiento} = req.body;
         console.log(dni,nombreCompleto,anioNacimiento);
+        console.log(req.body);
         
         const [result] = await pool.query('UPDATE tarjeta SET nombreCompleto = IFNULL(?,nombreCompleto), anioNacimiento = IFNULL(?,anioNacimiento) WHERE dni = ?',[nombreCompleto, anioNacimiento, dni]);
         console.log(result);
