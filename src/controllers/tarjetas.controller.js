@@ -54,13 +54,15 @@ export const borrarTarjeta = async (req,res) => {
 
 export const modificarTarjeta = async (req,res) => {
     try {
+        console.log('metodo put');
         const dni = req.params.id;
         const {nombreCompleto,anioNacimiento} = req.body;
+        console.log(dni,nombreCompleto,anioNacimiento);
         
         const [result] = await pool.query('UPDATE tarjeta SET nombreCompleto = IFNULL(?,nombreCompleto), anioNacimiento = IFNULL(?,anioNacimiento) WHERE dni = ?',[nombreCompleto, anioNacimiento, dni]);
         console.log(result);
         // El IFNULL nos permite preguntarnos si el dato existe, en caso que lo haga se devuelve ese mismo dato, sino se devuelve el valor secundario.
-        console.log(dni,nombreCompleto,anioNacimiento);
+       
     
         if (result.affectedRows <= 0) return res.status(404).json({"message":"Tarjeta no encontrada"});
         res.send(result);
